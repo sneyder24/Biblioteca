@@ -1,4 +1,5 @@
 print("Bienvenidos al sistema de consultas de biblioteca\n")
+
 while True:
     nombre = input("¿Cuál es su Nombre?\n")
     if nombre.isalpha():
@@ -9,16 +10,19 @@ while True:
 while True:
     print(f"\n{nombre}, Quieres consultar algunas de las siguientes opciones:\n")
     print("1-Informacion de los Libros\n""2-Ubicacion de los Libros\n""3-Historial de Prestamos\n""4-Salir del programa\n")
+
     while True:
         try:
             num = int(input("Seleccione su opción: "))
             break
         except ValueError:
             print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+
     if num == 1:
         print("\nLa opción que seleccionaste fue Libros\n")
         print("Tenemos los siguientes libros:\n")
         print("---------------------------------------------------\n|  ID  |          Título                         |\n---------------------------------------------------\n|  101 |Don Quijote de la Mancha                 |\n|  102 |Harry Potter y la Piedra Filosofal       |\n|  103 |La hojarasca                             |\n|  104 |Norwegian Wood                           |\n|  105 |La mala hora                             |\n|  106 |El viejo y el mar                        |\n|  107 |El otoño del patriarca                   |\n|  108 |Crónica de una muerte anunciada          |\n|  109 |La cámara secreta                        |\n|  110 |Animales fantásticos y dónde encontrarlos|\n|  111 |El asesinato de Roger Ackroyd            |\n|  112 |Asesinato en Mesopotamia                 |\n|  113 |1Q84                                     |\n|  114 |Kafka en la orilla                       |\n|  115 |Hibisco morado                           |\n|  116 |Americanah                               |\n|  117 |Adiós a las armas                        |\n|  118 |El viejo y el mar                        |\n---------------------------------------------------\n")
+
         while True:
             try:
                 num1 = int(input("¿Cuál es el informacion del libro que deseas elegir? (Ingresa 0 para salir):\n"))
@@ -65,6 +69,7 @@ while True:
                     print("Opción no válida. Por favor, elige un número válido.")
             except ValueError:
                 print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+
     elif num == 2:
         print("\nLa opción que seleccionaste fue Ubicacion de los Libros: \n")
         print("Tenemos las siguientes Ubicaciones:\n")
@@ -118,11 +123,42 @@ while True:
                     print("Opción no válida. Por favor, elige un número válido.")
             except ValueError:
                 print("Por favor, ingrese solo números. Inténtelo de nuevo.")
-        pass
+
     elif num == 3:
         print("\nLa opción que seleccionaste fue Prestamos \n")
         print("Tenemos las siguiente historial de prestamos:\n")
-        pass
+        print("-------------------------------\n| ID |   Nombre De usuario   |\n------------------------------\n|  1 |      Jose Navas       |\n|  2 |     Sneyder Ruiz      |\n|  3 |       Ana Gomez       |\n|  4 |     Lizeth Ruiz       |\n|  5 |   Kharid Garavito     |\n|  6 |    Danna Zarate       |\n|  7 |  Sebastian Velandia   |\n|  8 |      Libardo Guio     |\n|  9 |      Samuel Ruiz      |\n| 10 |      Angie Gomez      |\n------------------------------\n")
+        while True:
+            try:
+                num1 = int(input("Digita un numero para ver la informacion del prestamo: (Ingresa 0 para salir):\n"))
+                if num1 == 0:
+                    print("Saliendo del programa...")
+                    break
+                elif num1 == 1:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  1 |      Jose Navas       | 1002879635 |Don Quijote de la mancha                  |    2023-05-15    |    2023-05-210   |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 2:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  2 |     Sneyder Ruiz      | 1054120034 |Harry Potter y la piedra filosofal        |    2023-05-10    |    2023-05-15    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 3:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  3 |       Ana Gomez       | 1053580069 |La hojarasca                              |    2023-03-05    |    2023-03-10    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 4:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  4 |     Lizeth Ruiz       | 1002530338 |Norwegian Wood                            |    2023-04-20    |    2023-04-25    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 5:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  5 |   Kharid Garavito     | 1038080406 |La mala hora                              |    2023-05-12    |    2023-05-17    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 6:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  6 |    Danna Zarate       | 1011248560 |El viejo y el mar                         |    2023-06-18    |    2023-06-23    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 7:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  7 |  Sebastian Velandia   | 1089657232 |El otoño del patriarca                    |    2023-09-24    |    2023-09-29    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 8:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  8 |      Libardo Guio     | 1003589745 |Crónica de una muerte anunciada           |    2023-10-20    |    2023-10-25    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 9:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  9 |      Samuel Ruiz      | 1000589745 |La cámara secreta                         |    2023-04-01    |    2023-04-06    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                elif num1 == 10:
+                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n| 10 |      Angie Gomez      | 1055864222 |Animales fantásticos y dónde encontrarlos |    2023-11-11    |    2023-11-16    |\n----------------------------------------------------------------------------------------------------------------------------\n")
+                else:
+                    print("Opción no válida. Por favor, elige un número válido.")
+            except ValueError:
+                print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+
     elif num == 4:
         print("Saliendo del programa...")
         break
