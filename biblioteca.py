@@ -1,3 +1,14 @@
+import mysql.connector
+
+mydb = mysql.connector.connect(
+    host="127.0.0.1",
+    user="root",
+    password="",
+    database="biblioteca",
+)
+
+mycursor = mydb.cursor()
+
 print("Bienvenidos al sistema de consultas de biblioteca\n")
 
 while True:
@@ -8,9 +19,8 @@ while True:
         print("Por favor, ingrese solo letras. Inténtelo de nuevo.")
 
 while True:
-    print(f"\n{nombre}, Quieres consultar algunas de las siguientes opciones:\n")
-    print("1-Informacion de los Libros\n""2-Ubicacion de los Libros\n""3-Historial de Prestamos\n""4-Salir del programa\n")
-
+    print(f"\n{nombre}, ¿Quieres consultar algunas de las siguientes opciones?\n")
+    print("1-Libros\n""2-Ejemplar\n""3-Historial de Prestamos\n""4-autor\n""5-usuario\n""6-Salir del programa\n")
     while True:
         try:
             num = int(input("Seleccione su opción: "))
@@ -20,147 +30,120 @@ while True:
 
     if num == 1:
         print("\nLa opción que seleccionaste fue Libros\n")
-        print("Tenemos los siguientes libros:\n")
-        print("---------------------------------------------------\n|  ID  |          Título                         |\n---------------------------------------------------\n|  101 |Don Quijote de la Mancha                 |\n|  102 |Harry Potter y la Piedra Filosofal       |\n|  103 |La hojarasca                             |\n|  104 |Norwegian Wood                           |\n|  105 |La mala hora                             |\n|  106 |El viejo y el mar                        |\n|  107 |El otoño del patriarca                   |\n|  108 |Crónica de una muerte anunciada          |\n|  109 |La cámara secreta                        |\n|  110 |Animales fantásticos y dónde encontrarlos|\n|  111 |El asesinato de Roger Ackroyd            |\n|  112 |Asesinato en Mesopotamia                 |\n|  113 |1Q84                                     |\n|  114 |Kafka en la orilla                       |\n|  115 |Hibisco morado                           |\n|  116 |Americanah                               |\n|  117 |Adiós a las armas                        |\n|  118 |El viejo y el mar                        |\n---------------------------------------------------\n")
+        query = "SELECT * FROM Libro"
+        mycursor.execute(query)
+        libros = mycursor.fetchall()
+        for libro in libros:
+            print(libro)
+        if num == 1:
+            insertar = input("¿Deseas insertar un nuevo registro? (Sí/No)\n")
+            if insertar.lower() == 'si':
+                CodigoLibro = input("Ingrese el nuevo codigo del libro:\n")
+                Titulo = input("Ingrese el titulo:\n")
+                Editorial = input("Ingrese el editorial:\n")
+                NumeroPaginas = input("Ingrese el numero de paginas:\n")
+                CodigoAutor  = input("Ingrese el numero del autor\n")
 
-        while True:
-            try:
-                num1 = int(input("¿Cuál es el informacion del libro que deseas elegir? (Ingresa 0 para salir):\n"))
-                if num1 == 0:
-                    print("Saliendo del programa...")
-                    break
-                elif num1 == 101:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  101 |Don Quijote de la mancha                  |  Editorial1   |     432    |      1       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 102:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  102 |Harry Potter y la piedra filosofal        |  Editorial2   |     320    |      2       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 103:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  103 |La hojarasca                              |  Editorial3   |     144    |      1       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 104:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  104 |Norwegian Wood                            |  Editorial4   |     296    |      4       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 105:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  105 |La mala hora                              |  Editorial5   |     208    |      1       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 106:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  106 |El viejo y el mar                         |  Editorial6   |     127    |      6       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 107:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  107 |El otoño del patriarca                    |  Editorial7   |     320    |      1       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 108:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  108 |Crónica de una muerte anunciada           |  Editorial8   |     150    |      1       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 109:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  109 |La cámara secreta                         |  Editorial9   |     352    |      3       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 110:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  110 |Animales fantásticos y dónde encontrarlos |  Editorial10  |     128    |      2       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 111:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  111 |El asesinato de Roger Ackroyd             |  Editorial11  |     288    |      3       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 112:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  112 |Asesinato en Mesopotamia                  |  Editorial12  |     224    |      3       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 113:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  113 |1Q84                                      |  Editorial13  |     1152   |      4       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 114:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  114 |Kafka en la orilla                        |  Editorial14  |     480    |      4       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 115:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  115 |Hibisco morado                            |  Editorial15  |     336    |      5       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 116:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  116 |Americanah                                |  Editorial16  |     400    |      5       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 117:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  117 |Adiós a las armas                         |  Editorial17  |     352    |      6       |\n-----------------------------------------------------------------------------------------------\n")
-                elif num1 == 118:
-                    print("-----------------------------------------------------------------------------------------------\n|  ID  |          Titulo                          |  Editorial    | N° Paginas | Codigo Autor |\n-----------------------------------------------------------------------------------------------\n|  118 |El viejo y el mar                         |  Editorial18  |     127    |      6       |\n-----------------------------------------------------------------------------------------------\n")
-                else:
-                    print("Opción no válida. Por favor, elige un número válido.")
-            except ValueError:
-                print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+                sql = "INSERT INTO libro (CodigoLibro, Titulo, Editorial, NumeroPaginas, CodigoAutor) VALUES (%s, %s, %s, %s, %s)"
+                val = (CodigoLibro, Titulo, Editorial, NumeroPaginas, CodigoAutor)
+                mycursor.execute(sql, val)
+                mydb.commit()
+
+                print("Registro insertado correctamente.")
 
     elif num == 2:
-        print("\nLa opción que seleccionaste fue Ubicacion de los Libros: \n")
-        print("Tenemos las siguientes Ubicaciones:\n")
-        print("--------------------------\n| ID |   Localizacion   |\n-------------------------\n|  1 |   Estanteria1    |\n|  2 |   Estanteria2    |\n|  3 |   Estanteria3    |\n|  4 |   Estanteria1    |\n|  5 |   Estanteria2    |\n|  6 |   Estanteria3    |\n|  7 |   Estanteria1    |\n|  8 |   Estanteria2    |\n|  9 |   Estanteria3    |\n| 10 |   Estanteria1    |\n| 11 |   Estanteria2    |\n| 12 |   Estanteria3    |\n| 13 |   Estanteria1    |\n| 14 |   Estanteria2    |\n| 15 |   Estanteria3    |\n| 16 |   Estanteria1    |\n| 17 |   Estanteria2    |\n| 18 |   Estanteria3    |\n-------------------------\n")
-        while True:
-            try:
-                num1 = int(input("¿Cuál es el informacion del libro que deseas elegir? (Ingresa 0 para salir):\n"))
-                if num1 == 0:
-                    print("Saliendo del programa...")
-                    break
-                if num1 == 0:
-                    print("Saliendo del programa...")
-                    break
-                elif num1 == 1:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  1 |   Estanteria1    |Don Quijote de la mancha                  |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 2:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  2 |   Estanteria2    |Harry Potter y la piedra filosofal        |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 3:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  3 |   Estanteria3    |La hojarasca                              |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 4:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  4 |   Estanteria1    |Norwegian Wood                            |   En reparación  |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 5:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  5 |   Estanteria2    |La mala hora                              |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 6:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  6 |   Estanteria3    |El viejo y el mar                         |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 7:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  7 |   Estanteria1    |El otoño del patriarca                    |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 8:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  8 |   Estanteria2    |Crónica de una muerte anunciada           |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 9:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n|  9 |   Estanteria3    |La cámara secreta                         |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 10:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 10 |   Estanteria1    |Animales fantásticos y dónde encontrarlos |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 11:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 11 |   Estanteria2    |El asesinato de Roger Ackroyd             |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 12:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 12 |   Estanteria3    |Asesinato en Mesopotamia                  |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 13:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 13 |   Estanteria1    |1Q84                                      |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 14:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 14 |   Estanteria2    |Kafka en la orilla                        |   En reparación  |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 15:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 15 |   Estanteria3    |Hibisco morado                            |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 16:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 16 |   Estanteria1    |Americanah                                |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 17:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 17 |   Estanteria2    |Adiós a las armas                         |    Disponible    |\n----------------------------------------------------------------------------------------\n")
-                elif num1 == 18:
-                    print("----------------------------------------------------------------------------------------\n| ID |   Localizacion   |              Nombre del libro            |      Estado      |\n----------------------------------------------------------------------------------------\n| 18 |   Estanteria3    |El viejo y el mar                         |     Prestado     |\n----------------------------------------------------------------------------------------\n")
-                else:
-                    print("Opción no válida. Por favor, elige un número válido.")
-            except ValueError:
-                print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+        print("\nLa opción que seleccionaste fue Ejemplar: \n")
+        query = "SELECT * FROM Ejemplar"
+        mycursor.execute(query)
+        ejemplares = mycursor.fetchall()
+        for ejemplar in ejemplares:
+            print(ejemplar)
+
+        insertar = input("¿Deseas insertar un nuevo registro? (Sí/No)\n")
+        if insertar.lower() == 'si':
+            CodigoEjemplar = input("Ingrese el id de la ejemplar:\n")
+            Localizacion = input("Ingrese la Localizacion\n")
+            CodigoLibro = input("Ingrese el codigo del libro:\n")
+            Estado = input("Ingrese el Estado\n")
+
+            sql = "INSERT INTO Ejemplar (CodigoEjemplar, Localizacion, CodigoLibro, Estado) VALUES (%s, %s, %s, %s)"
+            val = (CodigoEjemplar, Localizacion, CodigoLibro, Estado)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print("Registro insertado correctamente.")
 
     elif num == 3:
-        print("\nLa opción que seleccionaste fue Prestamos \n")
-        print("Tenemos las siguiente historial de prestamos:\n")
-        print("-------------------------------\n| ID |   Nombre De usuario   |\n------------------------------\n|  1 |      Jose Navas       |\n|  2 |     Sneyder Ruiz      |\n|  3 |       Ana Gomez       |\n|  4 |     Lizeth Ruiz       |\n|  5 |   Kharid Garavito     |\n|  6 |    Danna Zarate       |\n|  7 |  Sebastian Velandia   |\n|  8 |      Libardo Guio     |\n|  9 |      Samuel Ruiz      |\n| 10 |      Angie Gomez      |\n------------------------------\n")
-        while True:
-            try:
-                num1 = int(input("Digita un numero para ver la informacion del prestamo: (Ingresa 0 para salir):\n"))
-                if num1 == 0:
-                    print("Saliendo del programa...")
-                    break
-                elif num1 == 1:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  1 |      Jose Navas       | 1002879635 |Don Quijote de la mancha                  |    2023-05-15    |    2023-05-210   |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 2:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  2 |     Sneyder Ruiz      | 1054120034 |Harry Potter y la piedra filosofal        |    2023-05-10    |    2023-05-15    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 3:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  3 |       Ana Gomez       | 1053580069 |La hojarasca                              |    2023-03-05    |    2023-03-10    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 4:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  4 |     Lizeth Ruiz       | 1002530338 |Norwegian Wood                            |    2023-04-20    |    2023-04-25    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 5:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  5 |   Kharid Garavito     | 1038080406 |La mala hora                              |    2023-05-12    |    2023-05-17    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 6:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  6 |    Danna Zarate       | 1011248560 |El viejo y el mar                         |    2023-06-18    |    2023-06-23    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 7:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  7 |  Sebastian Velandia   | 1089657232 |El otoño del patriarca                    |    2023-09-24    |    2023-09-29    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 8:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  8 |      Libardo Guio     | 1003589745 |Crónica de una muerte anunciada           |    2023-10-20    |    2023-10-25    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 9:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n|  9 |      Samuel Ruiz      | 1000589745 |La cámara secreta                         |    2023-04-01    |    2023-04-06    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                elif num1 == 10:
-                    print("----------------------------------------------------------------------------------------------------------------------------\n| ID |   Nombre De usuario   |  Documento |              Nombre del libro            |  Fecha Prestamo  | Fecha Devolucion |\n----------------------------------------------------------------------------------------------------------------------------\n| 10 |      Angie Gomez      | 1055864222 |Animales fantásticos y dónde encontrarlos |    2023-11-11    |    2023-11-16    |\n----------------------------------------------------------------------------------------------------------------------------\n")
-                else:
-                    print("Opción no válida. Por favor, elige un número válido.")
-            except ValueError:
-                print("Por favor, ingrese solo números. Inténtelo de nuevo.")
+        print("\nLa opción que seleccionaste Prestamos: \n")
+        query = "SELECT * FROM Prestamo"
+        mycursor.execute(query)
+        prestamos = mycursor.fetchall()
+        for prestamo in prestamos:
+            print(prestamo)
+
+        insertar = input("¿Deseas insertar un nuevo registro? (Sí/No)\n")
+        if insertar.lower() == 'si':
+            CodigoPrestamo = input("Ingrese el id de el Prestamo:\n")
+            FechaPrestamo = input("Ingrese la Fecha del Prestamo en el orden de AÑO/MES/DÍA.:\n")
+            FechaDevolucion = input("Ingrese la Fecha de la Devolucion en el orden de AÑO/MES/DÍA.:\n")
+            CodigoEjemplar = input("Ingrese el id del Ejemplar:\n")
+            CodigoUsuario = input("Ingrese el codigo del Usuario\n")
+
+            sql = "INSERT INTO Prestamo (CodigoPrestamo, FechaPrestamo, FechaDevolucion, CodigoEjemplar, CodigoUsuario) VALUES (%s, %s, %s, %s, %s)"
+            val = (CodigoPrestamo, FechaPrestamo, FechaDevolucion, CodigoEjemplar, CodigoUsuario)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print("Registro insertado correctamente.")
 
     elif num == 4:
+        print("\nLa opción que seleccionaste fue Autor: \n")
+        query = "SELECT * FROM Autor"
+        mycursor.execute(query)
+        autores = mycursor.fetchall()
+        for autor in autores:
+            print(autor)
+
+        insertar = input("¿Deseas insertar un nuevo registro? (Sí/No)\n")
+        if insertar.lower() == 'si':
+            CodigoAutor = input("Ingrese el id el Autor:\n")
+            NombreAutor = input("Ingrese el Nombre del autor\n")
+
+            sql = "INSERT INTO Autor (CodigoAutor, NombreAutor) VALUES (%s, %s)"
+            val = (CodigoAutor, NombreAutor)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print("Registro insertado correctamente.")
+
+    elif num == 5:
+        print("\nLa opción que seleccionaste fue Usuario: \n")
+        query = "SELECT * FROM Usuario"
+        mycursor.execute(query)
+        usuarios = mycursor.fetchall()
+        for usuario in usuarios:
+            print(usuario)
+
+        insertar = input("¿Deseas insertar un nuevo registro? (Sí/No)\n")
+        if insertar.lower() == 'si':
+            CodigoUsuario = input("Ingrese el id del usuario:\n")
+            NombreUsuario = input("Ingrese su nombre\n")
+            Direccion = input("Ingrese su direccion:\n")
+            Telefono  = input("Ingrese el telefono\n")
+
+            sql = "INSERT INTO Usuario (CodigoUsuario, NombreUsuario, Direccion, Telefono) VALUES (%s, %s, %s, %s)"
+            val = (CodigoUsuario, NombreUsuario, Direccion, Telefono)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print("Registro insertado correctamente.")
+
+    elif num == 6:
         print("Saliendo del programa...")
         break
+
     else:
         print("Opción no válida. Por favor, elige un número válido.")
+
+mycursor.close()
+mydb.close()
